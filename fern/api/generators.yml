@@ -2,23 +2,23 @@
 groups:
   publish:
     generators:
-    - name: "fernapi/fern-typescript-node-sdk"
-      version: "0.7.1"
-      output:
-        package-name: "@fern-api/vocode"
-        token: "${NPM_TOKEN}"
-        location: "npm"
-      config:
-        namespaceExport: "Vocode"
-      github:
-        repository: "fern-vocode/vocode-node"
-    - name: "fernapi/fern-python-sdk"
-      version: "0.3.7"
-      output:
-        package-name: "fern-vocode"
-        token: "${PYPI_TOKEN}"
-        location: "pypi"
-      config: 
-        client_class_name: "Vocode"
-      github:
-        repository: "fern-vocode/vocode-python"
+      - name: "fernapi/fern-typescript-node-sdk"
+        version: "0.7.1"
+        output:
+          package-name: "@vocode/vocode-api"
+          token: "${VOCODE_API_NPM_TOKEN}"
+          location: "npm"
+        config:
+          namespaceExport: "Vocode"
+        github:
+          repository: "vocodedev/vocode-api-node"
+      - name: "fernapi/fern-python-sdk"
+        version: "0.3.7"
+        output:
+          package-name: "vocode-api"
+          token: "${VOCODE_API_PYPI_TOKEN}"
+          location: "pypi"
+        config:
+          client_class_name: "Vocode"
+        github:
+          repository: "vocodedev/vocode-api-python"
