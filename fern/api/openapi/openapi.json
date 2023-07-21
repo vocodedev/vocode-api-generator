@@ -14,7 +14,7 @@
       "x-fern-server-name": "Production",
     },
     {
-      "url": "https://staging.vocode.dev",
+      "url": "https://vocode-api-staging-5xerktxr4q-uc.a.run.app",
       "description": "Staging environment",
       "x-fern-server-name": "Staging"
     }
