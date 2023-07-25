@@ -4,19 +4,17 @@
     "title": "Vocode Hosted API",
     "description": "\n        Vocode's Hosted API helps you automate phone calls in minutes. 🚀\n\n        ## Numbers\n\n        You can buy phone lines and place agents on them.\n\n        ## Calls\n\n        You can start, end, and get information about calls.\n        ",
     "termsOfService": "http://example.com/terms/",
-    "contact": { "name": "Kian", "email": "kian@vocode.dev" },
+    "contact": { "name": "Support", "email": "support@vocode.dev" },
     "version": "1.0.0"
   },
   "servers": [
     {
       "url": "https://api.vocode.dev",
-      "description": "Production environment",
-      "x-fern-server-name": "Production",
+      "description": "Production environment"
     },
     {
-      "url": "https://vocode-api-staging-5xerktxr4q-uc.a.run.app",
-      "description": "Staging environment",
-      "x-fern-server-name": "Staging"
+      "url": "https://staging.vocode.dev",
+      "description": "Staging environment"
     }
   ],
   "paths": {
@@ -33,7 +31,9 @@
                 "schema": {
                   "title": "Response List Numbers V1 Numbers List Get",
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/PhoneNumber" }
+                  "items": {
+                    "$ref": "#/components/schemas/NormalizedPhoneNumber"
+                  }
                 }
               }
             }
@@ -183,7 +183,7 @@
                 "schema": {
                   "title": "Response List Calls V1 Calls List Get",
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Call" }
+                  "items": { "$ref": "#/components/schemas/NormalizedCall" }
                 }
               }
             }
@@ -422,9 +422,7 @@
               "schema": {
                 "title": "Params",
                 "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TransferCallActionUpdateParams"
-                  },
+                  { "$ref": "#/components/schemas/TransferCallActionParams" },
                   {
                     "$ref": "#/components/schemas/EndConversationActionParams"
                   },
@@ -570,7 +568,7 @@
                 "schema": {
                   "title": "Response List Agents V1 Agents List Get",
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Agent" }
+                  "items": { "$ref": "#/components/schemas/NormalizedAgent" }
                 }
               }
             }
@@ -986,7 +984,6 @@
             "type": "array",
             "items": {
               "anyOf": [
-                { "type": "string", "format": "uuid" },
                 { "$ref": "#/components/schemas/TransferCallAction" },
                 { "$ref": "#/components/schemas/EndConversationAction" },
                 { "$ref": "#/components/schemas/DTMFAction" }
@@ -996,20 +993,13 @@
           "voice": {
             "title": "Voice",
             "anyOf": [
-              { "type": "string", "format": "uuid" },
               { "$ref": "#/components/schemas/AzureVoice" },
               { "$ref": "#/components/schemas/RimeVoice" },
               { "$ref": "#/components/schemas/ElevenLabsVoice" }
             ]
           },
           "initial_message": { "title": "Initial Message", "type": "string" },
-          "webhook": {
-            "title": "Webhook",
-            "anyOf": [
-              { "type": "string", "format": "uuid" },
-              { "$ref": "#/components/schemas/Webhook" }
-            ]
-          }
+          "webhook": { "$ref": "#/components/schemas/Webhook" }
         }
       },
       "AgentParams": {
@@ -1024,9 +1014,7 @@
             "items": {
               "anyOf": [
                 { "type": "string", "format": "uuid" },
-                {
-                  "$ref": "#/components/schemas/TransferCallActionUpdateParams"
-                },
+                { "$ref": "#/components/schemas/TransferCallActionParams" },
                 { "$ref": "#/components/schemas/EndConversationActionParams" },
                 { "$ref": "#/components/schemas/DTMFActionParams" }
               ]
@@ -1169,37 +1157,25 @@
       },
       "Call": {
         "title": "Call",
-        "required": [
-          "id",
-          "user_id",
-          "to_number",
-          "from_number",
-          "agent",
-          "status"
-        ],
+        "required": ["id", "user_id", "to_number", "from_number", "agent"],
         "type": "object",
         "properties": {
           "id": { "title": "Id", "type": "string", "format": "uuid" },
           "user_id": { "title": "User Id", "type": "string", "format": "uuid" },
-          "to_number": { "title": "To Number", "type": "string" },
-          "from_number": { "title": "From Number", "type": "string" },
-          "agent": {
-            "title": "Agent",
-            "anyOf": [
-              { "type": "string", "format": "uuid" },
-              { "$ref": "#/components/schemas/Agent" }
-            ]
+          "status": {
+            "allOf": [{ "$ref": "#/components/schemas/CallStatus" }],
+            "default": "not_started"
           },
-          "goal": { "title": "Goal", "type": "string" },
-          "transcript": { "title": "Transcript", "type": "string" },
-          "recording_url": { "title": "Recording Url", "type": "string" },
-          "status": { "$ref": "#/components/schemas/CallStatus" },
           "error_message": { "title": "Error Message", "type": "string" },
           "recording_available": {
             "title": "Recording Available",
             "type": "boolean",
             "default": false
-          }
+          },
+          "transcript": { "title": "Transcript", "type": "string" },
+          "to_number": { "title": "To Number", "type": "string" },
+          "from_number": { "title": "From Number", "type": "string" },
+          "agent": { "$ref": "#/components/schemas/Agent" }
         }
       },
       "CallStatus": {
@@ -1210,12 +1186,11 @@
       },
       "CreateCallRequest": {
         "title": "CreateCallRequest",
-        "required": ["from_number", "to_number", "goal", "agent"],
+        "required": ["from_number", "to_number", "agent"],
         "type": "object",
         "properties": {
           "from_number": { "title": "From Number", "type": "string" },
           "to_number": { "title": "To Number", "type": "string" },
-          "goal": { "title": "Goal", "type": "string" },
           "agent": {
             "title": "Agent",
             "anyOf": [
@@ -1401,22 +1376,73 @@
           }
         }
       },
-      "PhoneNumber": {
-        "title": "PhoneNumber",
-        "required": ["id", "user_id", "number", "active", "inbound_agent"],
+      "NormalizedAgent": {
+        "title": "NormalizedAgent",
+        "required": ["id", "user_id", "prompt", "actions", "voice"],
         "type": "object",
         "properties": {
           "id": { "title": "Id", "type": "string", "format": "uuid" },
           "user_id": { "title": "User Id", "type": "string", "format": "uuid" },
-          "number": { "title": "Number", "type": "string" },
-          "active": { "title": "Active", "type": "boolean" },
+          "prompt": { "title": "Prompt", "type": "string" },
+          "actions": {
+            "title": "Actions",
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" }
+          },
+          "voice": { "title": "Voice", "type": "string", "format": "uuid" },
+          "initial_message": { "title": "Initial Message", "type": "string" },
+          "webhook": { "title": "Webhook", "type": "string", "format": "uuid" }
+        }
+      },
+      "NormalizedCall": {
+        "title": "NormalizedCall",
+        "required": ["id", "user_id", "to_number", "from_number", "agent"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string", "format": "uuid" },
+          "user_id": { "title": "User Id", "type": "string", "format": "uuid" },
+          "status": {
+            "allOf": [{ "$ref": "#/components/schemas/CallStatus" }],
+            "default": "not_started"
+          },
+          "error_message": { "title": "Error Message", "type": "string" },
+          "recording_available": {
+            "title": "Recording Available",
+            "type": "boolean",
+            "default": false
+          },
+          "transcript": { "title": "Transcript", "type": "string" },
+          "to_number": { "title": "To Number", "type": "string" },
+          "from_number": { "title": "From Number", "type": "string" },
+          "agent": { "title": "Agent", "type": "string", "format": "uuid" }
+        }
+      },
+      "NormalizedPhoneNumber": {
+        "title": "NormalizedPhoneNumber",
+        "required": ["id", "user_id", "inbound_agent", "number"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string", "format": "uuid" },
+          "user_id": { "title": "User Id", "type": "string", "format": "uuid" },
+          "active": { "title": "Active", "type": "boolean", "default": true },
           "inbound_agent": {
             "title": "Inbound Agent",
-            "anyOf": [
-              { "type": "string", "format": "uuid" },
-              { "$ref": "#/components/schemas/Agent" }
-            ]
-          }
+            "type": "string",
+            "format": "uuid"
+          },
+          "number": { "title": "Number", "type": "string" }
+        }
+      },
+      "PhoneNumber": {
+        "title": "PhoneNumber",
+        "required": ["id", "user_id", "inbound_agent", "number"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string", "format": "uuid" },
+          "user_id": { "title": "User Id", "type": "string", "format": "uuid" },
+          "active": { "title": "Active", "type": "boolean", "default": true },
+          "inbound_agent": { "$ref": "#/components/schemas/Agent" },
+          "number": { "title": "Number", "type": "string" }
         }
       },
       "PlanType": {
@@ -1474,6 +1500,15 @@
             "allOf": [{ "$ref": "#/components/schemas/ActionType" }],
             "default": "action_transfer_call"
           },
+          "config": { "$ref": "#/components/schemas/TransferCallConfig" }
+        }
+      },
+      "TransferCallActionParams": {
+        "title": "TransferCallActionParams",
+        "required": ["type", "config"],
+        "type": "object",
+        "properties": {
+          "type": { "$ref": "#/components/schemas/ActionType" },
           "config": { "$ref": "#/components/schemas/TransferCallConfig" }
         }
       },
