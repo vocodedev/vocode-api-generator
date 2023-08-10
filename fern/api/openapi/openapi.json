@@ -58,7 +58,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/numbers/": {
+    "/v1/numbers": {
       "get": {
         "tags": ["numbers"],
         "summary": "Get Number",
@@ -226,7 +226,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/calls/": {
+    "/v1/calls": {
       "get": {
         "tags": ["calls"],
         "summary": "Get Call",
@@ -358,7 +358,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/usage/": {
+    "/v1/usage": {
       "get": {
         "tags": ["usage"],
         "summary": "Get Usage",
@@ -376,7 +376,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/actions/": {
+    "/v1/actions": {
       "get": {
         "tags": ["actions"],
         "summary": "Get Action",
@@ -395,7 +395,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Action V1 Actions  Get",
+                  "title": "Response Get Action V1 Actions Get",
                   "anyOf": [
                     { "$ref": "#/components/schemas/TransferCallAction" },
                     { "$ref": "#/components/schemas/EndConversationAction" },
@@ -567,7 +567,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/agents/": {
+    "/v1/agents": {
       "get": {
         "tags": ["agents"],
         "summary": "Get Agent",
@@ -717,7 +717,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/voices/": {
+    "/v1/voices": {
       "get": {
         "tags": ["voices"],
         "summary": "Get Voice",
@@ -736,7 +736,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Voice V1 Voices  Get",
+                  "title": "Response Get Voice V1 Voices Get",
                   "anyOf": [
                     { "$ref": "#/components/schemas/AzureVoice" },
                     { "$ref": "#/components/schemas/RimeVoice" },
@@ -902,7 +902,7 @@
         "security": [{ "HTTPBearer": [] }]
       }
     },
-    "/v1/webhooks/": {
+    "/v1/webhooks": {
       "get": {
         "tags": ["webhooks"],
         "summary": "Get Webhook",
@@ -1050,33 +1050,6 @@
           }
         },
         "security": [{ "HTTPBearer": [] }]
-      }
-    },
-    "/v1/payment/buy_included_number": {
-      "post": {
-        "tags": ["payment"],
-        "summary": "Buy Included Number",
-        "operationId": "buy_included_number",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": { "application/json": { "schema": {} } }
-          }
-        },
-        "security": [{ "HTTPBearer": [] }]
-      }
-    },
-    "/v1/payment/stripe_webhook": {
-      "post": {
-        "tags": ["payment"],
-        "summary": "Handle Stripe Webhook",
-        "operationId": "handle_stripe_webhook",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": { "application/json": { "schema": {} } }
-          }
-        }
       }
     }
   },
