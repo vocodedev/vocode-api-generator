@@ -13,7 +13,7 @@ groups:
         github:
           repository: "vocodedev/vocode-api-node"
       - name: "fernapi/fern-python-sdk"
-        version: "0.3.7"
+        version: "0.3.15"
         output:
           package-name: "vocode-api"
           token: "${PYPI_TOKEN}"
