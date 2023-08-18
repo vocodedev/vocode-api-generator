@@ -717,15 +717,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Get Voice V1 Voices Get",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/AzureVoice" },
-                    { "$ref": "#/components/schemas/RimeVoice" },
-                    { "$ref": "#/components/schemas/ElevenLabsVoice" },
-                    { "$ref": "#/components/schemas/PlayHtVoice" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/VoiceResponseModel" }
               }
             }
           },
@@ -799,15 +791,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Create Voice V1 Voices Create Post",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/AzureVoice" },
-                    { "$ref": "#/components/schemas/RimeVoice" },
-                    { "$ref": "#/components/schemas/ElevenLabsVoice" },
-                    { "$ref": "#/components/schemas/PlayHtVoice" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/VoiceResponseModel" }
               }
             }
           },
@@ -851,15 +835,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Update Voice V1 Voices Update Post",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/AzureVoice" },
-                    { "$ref": "#/components/schemas/RimeVoice" },
-                    { "$ref": "#/components/schemas/ElevenLabsVoice" },
-                    { "$ref": "#/components/schemas/PlayHtVoice" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/VoiceResponseModel" }
               }
             }
           },
@@ -2215,6 +2191,24 @@
             "voice_rime": "#/components/schemas/RimeVoiceParams",
             "voice_eleven_labs": "#/components/schemas/ElevenLabsVoiceParams",
             "voice_play_ht": "#/components/schemas/PlayHtVoiceParams"
+          }
+        }
+      },
+      "VoiceResponseModel": {
+        "title": "VoiceResponseModel",
+        "oneOf": [
+          { "$ref": "#/components/schemas/AzureVoice" },
+          { "$ref": "#/components/schemas/RimeVoice" },
+          { "$ref": "#/components/schemas/ElevenLabsVoice" },
+          { "$ref": "#/components/schemas/PlayHtVoice" }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "voice_azure": "#/components/schemas/AzureVoice",
+            "voice_rime": "#/components/schemas/RimeVoice",
+            "voice_eleven_labs": "#/components/schemas/ElevenLabsVoice",
+            "voice_play_ht": "#/components/schemas/PlayHtVoice"
           }
         }
       },
