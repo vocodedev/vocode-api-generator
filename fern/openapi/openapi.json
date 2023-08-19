@@ -394,14 +394,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Get Action V1 Actions Get",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/TransferCallAction" },
-                    { "$ref": "#/components/schemas/EndConversationAction" },
-                    { "$ref": "#/components/schemas/DTMFAction" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/ActionResponseModel" }
               }
             }
           },
@@ -475,14 +468,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Create Action V1 Actions Create Post",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/TransferCallAction" },
-                    { "$ref": "#/components/schemas/EndConversationAction" },
-                    { "$ref": "#/components/schemas/DTMFAction" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/ActionResponseModel" }
               }
             }
           },
@@ -526,14 +512,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-                  "title": "Response Update Action V1 Actions Update Post",
-                  "anyOf": [
-                    { "$ref": "#/components/schemas/TransferCallAction" },
-                    { "$ref": "#/components/schemas/EndConversationAction" },
-                    { "$ref": "#/components/schemas/DTMFAction" }
-                  ]
-                }
+                "schema": { "$ref": "#/components/schemas/ActionResponseModel" }
               }
             }
           },
@@ -1049,6 +1028,22 @@
           }
         }
       },
+      "ActionResponseModel": {
+        "title": "ActionResponseModel",
+        "oneOf": [
+          { "$ref": "#/components/schemas/TransferCallAction" },
+          { "$ref": "#/components/schemas/EndConversationAction" },
+          { "$ref": "#/components/schemas/DTMFAction" }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "action_transfer_call": "#/components/schemas/TransferCallAction",
+            "action_end_conversation": "#/components/schemas/EndConversationAction",
+            "action_dtmf": "#/components/schemas/DTMFAction"
+          }
+        }
+      },
       "ActionUpdateParamsRequest": {
         "title": "ActionUpdateParamsRequest",
         "oneOf": [
@@ -1122,7 +1117,8 @@
           "interrupt_sensitivity": {
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
-          }
+          },
+          "context_endpoint": { "title": "Context Endpoint", "type": "string" }
         }
       },
       "AgentPage": {
@@ -1201,7 +1197,8 @@
           "interrupt_sensitivity": {
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
-          }
+          },
+          "context_endpoint": { "title": "Context Endpoint", "type": "string" }
         }
       },
       "AgentUpdateParams": {
@@ -1295,6 +1292,13 @@
             "title": "Interrupt Sensitivity",
             "anyOf": [
               { "$ref": "#/components/schemas/InterruptSensitivity" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ]
+          },
+          "context_endpoint": {
+            "title": "Context Endpoint",
+            "anyOf": [
+              { "type": "string" },
               { "$ref": "#/components/schemas/Undefined" }
             ]
           }
@@ -1491,7 +1495,8 @@
           "interrupt_sensitivity": {
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
-          }
+          },
+          "context_endpoint": { "title": "Context Endpoint", "type": "string" }
         }
       },
       "CreateCallRequest": {
@@ -1755,7 +1760,8 @@
           "interrupt_sensitivity": {
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
-          }
+          },
+          "context_endpoint": { "title": "Context Endpoint", "type": "string" }
         }
       },
       "NormalizedCall": {
