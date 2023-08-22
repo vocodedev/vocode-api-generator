@@ -10,11 +10,8 @@
   "servers": [
     {
       "url": "https://api.vocode.dev",
-      "description": "Production environment"
-    },
-    {
-      "url": "https://staging.vocode.dev",
-      "description": "Staging environment"
+      "description": "Production environment",
+      "x-fern-server-name": "Production"
     }
   ],
   "paths": {
