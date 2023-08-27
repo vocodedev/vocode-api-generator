@@ -1422,7 +1422,12 @@
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
           },
-          "context_endpoint": { "type": "string", "title": "Context Endpoint" }
+          "context_endpoint": { "type": "string", "title": "Context Endpoint" },
+          "noise_suppression": {
+            "type": "boolean",
+            "title": "Noise Suppression",
+            "default": true
+          }
         },
         "type": "object",
         "required": ["id", "user_id", "prompt", "actions", "voice"],
@@ -1508,7 +1513,12 @@
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
           },
-          "context_endpoint": { "type": "string", "title": "Context Endpoint" }
+          "context_endpoint": { "type": "string", "title": "Context Endpoint" },
+          "noise_suppression": {
+            "type": "boolean",
+            "title": "Noise Suppression",
+            "default": true
+          }
         },
         "type": "object",
         "required": ["prompt", "voice"],
@@ -1613,6 +1623,13 @@
               { "$ref": "#/components/schemas/Undefined" }
             ],
             "title": "Context Endpoint"
+          },
+          "noise_suppression": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Noise Suppression"
           }
         },
         "type": "object",
@@ -1828,7 +1845,12 @@
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
           },
-          "context_endpoint": { "type": "string", "title": "Context Endpoint" }
+          "context_endpoint": { "type": "string", "title": "Context Endpoint" },
+          "noise_suppression": {
+            "type": "boolean",
+            "title": "Noise Suppression",
+            "default": true
+          }
         },
         "type": "object",
         "required": ["prompt"],
@@ -2099,7 +2121,12 @@
             "allOf": [{ "$ref": "#/components/schemas/InterruptSensitivity" }],
             "default": "high"
           },
-          "context_endpoint": { "type": "string", "title": "Context Endpoint" }
+          "context_endpoint": { "type": "string", "title": "Context Endpoint" },
+          "noise_suppression": {
+            "type": "boolean",
+            "title": "Noise Suppression",
+            "default": true
+          }
         },
         "type": "object",
         "required": ["id", "user_id", "prompt", "actions", "voice"],
