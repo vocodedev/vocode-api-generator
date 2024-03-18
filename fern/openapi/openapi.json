@@ -20,34 +20,12 @@
         "tags": ["numbers"],
         "summary": "List Numbers",
         "operationId": "list_numbers",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/PhoneNumberPage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -245,34 +223,12 @@
         "tags": ["calls"],
         "summary": "List Calls",
         "operationId": "list_calls",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/CallPage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -469,34 +425,12 @@
         "tags": ["actions"],
         "summary": "List Actions",
         "operationId": "list_actions",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ActionPage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -621,34 +555,12 @@
         "tags": ["agents"],
         "summary": "List Agents",
         "operationId": "list_agents",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/AgentPage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -771,34 +683,12 @@
         "tags": ["voices"],
         "summary": "List Voices",
         "operationId": "list_voices",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/VoicePage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -923,34 +813,12 @@
         "tags": ["webhooks"],
         "summary": "List Webhooks",
         "operationId": "list_webhooks",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/WebhookPage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -1075,15 +943,15 @@
         "operationId": "list_prompts",
         "parameters": [
           {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
+            "required": true,
+            "schema": { "title": "Args" },
+            "name": "args",
             "in": "query"
           },
           {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
+            "required": true,
+            "schema": { "title": "Kwargs" },
+            "name": "kwargs",
             "in": "query"
           }
         ],
@@ -1225,34 +1093,12 @@
         "tags": ["vector_databases"],
         "summary": "List Vector Databases",
         "operationId": "list_vector_databases",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/VectorDatabasePage" }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -1385,20 +1231,6 @@
         "tags": ["account_connections"],
         "summary": "List Account Connections",
         "operationId": "list_account_connections",
-        "parameters": [
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Page", "default": 1 },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": { "type": "integer", "title": "Size", "default": 10 },
-            "name": "size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1407,14 +1239,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/AccountConnectionPage"
                 }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -1504,6 +1328,20 @@
           }
         },
         "security": [{ "HTTPBearer": [] }]
+      }
+    },
+    "/v1/monitoring/health": {
+      "get": {
+        "tags": ["monitoring"],
+        "summary": "Health Check",
+        "description": "Checks the health the service.\n\nIt returns 200 if the service is healthy.",
+        "operationId": "health_check",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
       }
     }
   },
@@ -2319,6 +2157,7 @@
             "type": "string",
             "enum": [
               "human_unanswered",
+              "call_did_not_connect",
               "human_disconnected",
               "bot_disconnected",
               "transfer_unanswered",
@@ -2369,6 +2208,11 @@
           },
           "telephony_account_connection": {
             "$ref": "#/components/schemas/TwilioAccountConnection"
+          },
+          "telephony_params": {
+            "additionalProperties": { "type": "string" },
+            "type": "object",
+            "title": "Telephony Params"
           }
         },
         "type": "object",
@@ -2572,6 +2416,11 @@
             "additionalProperties": { "type": "string" },
             "type": "object",
             "title": "Context"
+          },
+          "telephony_params": {
+            "additionalProperties": { "type": "string" },
+            "type": "object",
+            "title": "Telephony Params"
           }
         },
         "type": "object",
@@ -2685,7 +2534,12 @@
             "type": "integer",
             "title": "Optimize Streaming Latency"
           },
-          "model_id": { "type": "string", "title": "Model Id" }
+          "model_id": { "type": "string", "title": "Model Id" },
+          "experimental_input_streaming": {
+            "type": "boolean",
+            "title": "Experimental Input Streaming",
+            "default": false
+          }
         },
         "type": "object",
         "required": ["id", "user_id", "type", "voice_id"],
@@ -2706,7 +2560,12 @@
             "type": "integer",
             "title": "Optimize Streaming Latency"
           },
-          "model_id": { "type": "string", "title": "Model Id" }
+          "model_id": { "type": "string", "title": "Model Id" },
+          "experimental_input_streaming": {
+            "type": "boolean",
+            "title": "Experimental Input Streaming",
+            "default": false
+          }
         },
         "type": "object",
         "required": ["type", "voice_id"],
@@ -2760,6 +2619,13 @@
               { "$ref": "#/components/schemas/Undefined" }
             ],
             "title": "Model Id"
+          },
+          "experimental_input_streaming": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Experimental Input Streaming"
           }
         },
         "type": "object",
@@ -2868,6 +2734,7 @@
           "event_action",
           "event_phone_call_connected",
           "event_phone_call_ended",
+          "event_phone_call_did_not_connect",
           "event_transcript",
           "event_recording",
           "event_human_detection"
@@ -3081,6 +2948,7 @@
             "type": "string",
             "enum": [
               "human_unanswered",
+              "call_did_not_connect",
               "human_disconnected",
               "bot_disconnected",
               "transfer_unanswered",
@@ -3135,6 +3003,11 @@
               { "$ref": "#/components/schemas/TwilioAccountConnection" }
             ],
             "title": "Telephony Account Connection"
+          },
+          "telephony_params": {
+            "additionalProperties": { "type": "string" },
+            "type": "object",
+            "title": "Telephony Params"
           }
         },
         "type": "object",
@@ -3462,7 +3335,15 @@
             "enum": ["faster", "draft", "low", "medium", "high", "premium"],
             "title": "Quality"
           },
-          "temperature": { "type": "number", "title": "Temperature" }
+          "temperature": { "type": "number", "title": "Temperature" },
+          "top_p": { "type": "number", "title": "Top P" },
+          "text_guidance": { "type": "number", "title": "Text Guidance" },
+          "voice_guidance": { "type": "number", "title": "Voice Guidance" },
+          "experimental_remove_silence": {
+            "type": "boolean",
+            "title": "Experimental Remove Silence",
+            "default": false
+          }
         },
         "type": "object",
         "required": ["id", "user_id", "type", "voice_id"],
@@ -3490,7 +3371,15 @@
             "enum": ["faster", "draft", "low", "medium", "high", "premium"],
             "title": "Quality"
           },
-          "temperature": { "type": "number", "title": "Temperature" }
+          "temperature": { "type": "number", "title": "Temperature" },
+          "top_p": { "type": "number", "title": "Top P" },
+          "text_guidance": { "type": "number", "title": "Text Guidance" },
+          "voice_guidance": { "type": "number", "title": "Voice Guidance" },
+          "experimental_remove_silence": {
+            "type": "boolean",
+            "title": "Experimental Remove Silence",
+            "default": false
+          }
         },
         "type": "object",
         "required": ["type", "voice_id"],
@@ -3554,6 +3443,34 @@
               { "$ref": "#/components/schemas/Undefined" }
             ],
             "title": "Temperature"
+          },
+          "top_p": {
+            "anyOf": [
+              { "type": "number" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Top P"
+          },
+          "text_guidance": {
+            "anyOf": [
+              { "type": "number" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Text Guidance"
+          },
+          "voice_guidance": {
+            "anyOf": [
+              { "type": "number" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Voice Guidance"
+          },
+          "experimental_remove_silence": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "$ref": "#/components/schemas/Undefined" }
+            ],
+            "title": "Experimental Remove Silence"
           }
         },
         "type": "object",
