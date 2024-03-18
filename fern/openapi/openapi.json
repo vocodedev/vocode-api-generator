@@ -12,6 +12,10 @@
       "url": "https://api.vocode.dev",
       "description": "Production environment",
       "x-fern-server-name": "Production"
+    },
+    {
+      "url": "https://5253-50-113-76-49.ngrok-free.app",
+      "description": "Development environment"
     }
   ],
   "paths": {
@@ -20,12 +24,50 @@
         "tags": ["numbers"],
         "summary": "List Numbers",
         "operationId": "list_numbers",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/PhoneNumberPage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -223,12 +265,50 @@
         "tags": ["calls"],
         "summary": "List Calls",
         "operationId": "list_calls",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/CallPage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -425,12 +505,50 @@
         "tags": ["actions"],
         "summary": "List Actions",
         "operationId": "list_actions",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ActionPage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -555,12 +673,50 @@
         "tags": ["agents"],
         "summary": "List Agents",
         "operationId": "list_agents",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/AgentPage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -683,12 +839,50 @@
         "tags": ["voices"],
         "summary": "List Voices",
         "operationId": "list_voices",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/VoicePage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -813,12 +1007,50 @@
         "tags": ["webhooks"],
         "summary": "List Webhooks",
         "operationId": "list_webhooks",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/WebhookPage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -943,15 +1175,31 @@
         "operationId": "list_prompts",
         "parameters": [
           {
-            "required": true,
-            "schema": { "title": "Args" },
-            "name": "args",
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
             "in": "query"
           },
           {
-            "required": true,
-            "schema": { "title": "Kwargs" },
-            "name": "kwargs",
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
             "in": "query"
           }
         ],
@@ -1093,12 +1341,50 @@
         "tags": ["vector_databases"],
         "summary": "List Vector Databases",
         "operationId": "list_vector_databases",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/VectorDatabasePage" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
@@ -1231,6 +1517,36 @@
         "tags": ["account_connections"],
         "summary": "List Account Connections",
         "operationId": "list_account_connections",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Size", "default": 10 },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Sort Column" },
+            "name": "sort_column",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Sort Desc",
+              "default": false
+            },
+            "name": "sort_desc",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1239,6 +1555,14 @@
                 "schema": {
                   "$ref": "#/components/schemas/AccountConnectionPage"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
