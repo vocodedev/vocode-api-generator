@@ -12,10 +12,6 @@
       "url": "https://api.vocode.dev",
       "description": "Production environment",
       "x-fern-server-name": "Production"
-    },
-    {
-      "url": "https://5253-50-113-76-49.ngrok-free.app",
-      "description": "Development environment"
     }
   ],
   "paths": {
@@ -2041,6 +2037,11 @@
             "type": "boolean",
             "title": "Run Do Not Call Detection",
             "default": false
+          },
+          "llm_temperature": {
+            "type": "number",
+            "title": "Llm Temperature",
+            "default": 0.0
           }
         },
         "type": "object",
@@ -2179,6 +2180,11 @@
             "type": "boolean",
             "title": "Run Do Not Call Detection",
             "default": false
+          },
+          "llm_temperature": {
+            "type": "number",
+            "title": "Llm Temperature",
+            "default": 0.0
           }
         },
         "type": "object",
@@ -2704,6 +2710,11 @@
             "type": "boolean",
             "title": "Run Do Not Call Detection",
             "default": false
+          },
+          "llm_temperature": {
+            "type": "number",
+            "title": "Llm Temperature",
+            "default": 0.0
           }
         },
         "type": "object",
@@ -3227,6 +3238,11 @@
             "type": "boolean",
             "title": "Run Do Not Call Detection",
             "default": false
+          },
+          "llm_temperature": {
+            "type": "number",
+            "title": "Llm Temperature",
+            "default": 0.0
           }
         },
         "type": "object",
