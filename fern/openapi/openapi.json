@@ -12,10 +12,6 @@
       "url": "https://api.vocode.dev",
       "description": "Production environment",
       "x-fern-server-name": "Production"
-    },
-    {
-      "url": "https://3ec9e17bc855.ngrok.app",
-      "description": "Development environment"
     }
   ],
   "paths": {
